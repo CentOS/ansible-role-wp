@@ -1,7 +1,7 @@
 # Defaults variables for role wp / wordpress
 # Do we want local or remote mysql db ?
 wp_use_remote_mysql_host: False
-wp_mysql_host: localhost.localdomain
+wp_mysql_host: localhost
 
 # Mysql db
 wp_db_name: wordpress
