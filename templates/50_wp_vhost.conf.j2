@@ -13,10 +13,16 @@
    RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
 {% endif %} 
 
- <Directory {{ wp_local_path }}>
-    Options FollowSymLinks
-    AllowOverride All
- </Directory>
+<Directory {{ wp_local_path }}>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.php$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.php [L]
+  Options FollowSymLinks
+  AllowOverride All
+</Directory>
 
 </VirtualHost>
 

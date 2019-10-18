@@ -9,6 +9,7 @@
     db_user: "{{ wp_db_user }}"
     db_pass: "{{ wp_db_pass }}"
     db_name: "{{ wp_db_name }}"
+    mysql_host: "{{ wp_mysql_host }}"
   when: wp_use_remote_mysql_host
   delegate_to: "{{ wp_mysql_host }}"
 
@@ -16,6 +17,8 @@
   include_role: 
     name: iptables
     tasks_from: remote-mysqld
+  vars:
+    mysql_host: "{{ wp_mysql_host }}"
   when: wp_use_remote_mysql_host
   delegate_to: "{{ wp_mysql_host }}"
 
