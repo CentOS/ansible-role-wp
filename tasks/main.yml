@@ -1,24 +1,23 @@
 # Defaults tasks for role wp / Wordpress
 - include_tasks: selinux.yml
 
-- name: Creating mandatory DB 
-  include_role: 
-    name: mysql
-    tasks_from: db_remote
-  vars:
-    db_user: "{{ wp_db_user }}"
-    db_pass: "{{ wp_db_pass }}"
-    db_name: "{{ wp_db_name }}"
-    mysql_host: "{{ wp_mysql_host }}"
-  when: wp_use_remote_mysql_host
-  delegate_to: "{{ wp_mysql_host }}"
+- block:
+    - name: Creating mandatory DB 
+      include_role: 
+        name: mysql
+        tasks_from: db_remote
+      vars:
+        db_user: "{{ wp_db_user }}"
+        db_pass: "{{ wp_db_pass }}"
+        db_name: "{{ wp_db_name }}"
+        mysql_host: "{{ wp_mysql_host }}"
 
-- name: Opening iptables if needed on remote mysql host
-  include_role: 
-    name: iptables
-    tasks_from: remote-mysqld
-  vars:
-    mysql_host: "{{ wp_mysql_host }}"
+    - name: Opening iptables if needed on remote mysql host
+      include_role: 
+        name: iptables
+        tasks_from: remote-mysqld
+      vars:
+        mysql_host: "{{ wp_mysql_host }}"
   when: wp_use_remote_mysql_host
   delegate_to: "{{ wp_mysql_host }}"
 
