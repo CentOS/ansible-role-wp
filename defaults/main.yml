@@ -13,6 +13,17 @@ wp_local_path: /var/www/wordpress
 wp_public_name: my blog
 wp_release: 5.1 # ideal to switch to latest
 
+# Do we want to install plugins ?
+# Can be an empty list too
+wp_plugins:
+  - name: openid
+    version: 3.5.0
+
+# openid configuration : do we want to configure which IdP to use automatically ?
+# Has to be manually enabled by admin on first install though
+wp_openid_redirect: False
+wp_openid_idp_url: https://id.centos.org/idp/openid
+
 # httpd settings
 wp_httpd_hostname: "{{ inventory_hostname }}"
 wp_httpd_tls: False # if True, redirect to https in vhost and needs proper TLS x509 cert,key based on wp_httpd_hostname

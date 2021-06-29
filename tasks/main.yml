@@ -85,6 +85,11 @@
     path: "{{ wp_local_path }}"
     state: directory
 
+- name: Ensuring we can uncompress wordpress core/plugins
+  yum:
+    name: ['unzip','tar','gzip']
+    state: installed
+
 - name: Downloading (once) wordpress version
   unarchive:
     src: "https://wordpress.org/wordpress-{{ wp_release }}.tar.gz"
@@ -113,6 +118,28 @@
   when: wp_new_install is changed   
   tags:
     - config
+
+- name: Upgrading wordpress plugins if needed
+  unarchive:
+    src: "https://downloads.wordpress.org/plugin/{{ item.name }}.{{ item.version }}.zip"
+    remote_src: yes
+    dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/plugins/"
+  with_items: "{{ wp_plugins }}"  
+  tags:
+    - plugins
+
+- block:
+    - name: Ensuring we have fedora-autologin plugin directory
+      file:
+        path: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/plugins/fedora-autologin"
+        state: directory
+
+    - name: Configuring fedora-autologin IdP URL
+      template:
+        src: fedora-autologin.php.j2
+        dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/plugins/fedora-autologin/fedora-autologin.php"
+  when: wp_openid_redirect  
+
 
 - name: Ensuring backup user and jobs
   include_role:

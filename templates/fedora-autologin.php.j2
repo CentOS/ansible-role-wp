@@ -1,0 +1,38 @@
+<?php
+/*
+Plugin Name: Fedora AutoLogin
+Plugin URI: http://patrick.uiterwijk.org/
+Description: Automatically redirects the user to Fedora OpenID instead of showing stupid login form (NOTE: expects the OpenID plugin to be installed)
+Version: 42
+Author: Patrick Uiterwijk
+Author URI: http://patrick.uiterwijk.org/
+License: https://creativecommons.org/publicdomain/zero/1.0/
+
+Written in 2015 by Patrick Uiterwijk <patrick@puiterwijk.org>
+
+    This file is part of Fedora AutoLogin, a plugin for WordPress.
+
+    To the extent possible under law, the author(s) have dedicated
+    all copyright and related and neighboring rights to this software
+    to the public domain worldwide. This software is distributed without any warranty.
+*/
+
+
+// This is put on a priority well below the default (10), so that it gets appended last.
+add_action('login_form', 'auto_login_openid', 15);
+function auto_login_openid() {
+    echo '
+    <script type="text/javascript">
+    // Fedora-AutoLogin start
+    function wpOnload() {
+        // Automatically login
+        document.getElementById("openid_identifier").value = "{{ wp_openid_idp_url }}";
+        document.getElementById("loginform").style.display = "none";
+        document.getElementById("loginform").insertAdjacentHTML("beforebegin", "<p>You are being redirected, please wait.</p>");
+        document.getElementById("wp-submit").click();
+    };
+    // Fedora-AutoLogin end
+    </script>
+    ';
+}
+?>
