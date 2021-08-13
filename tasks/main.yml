@@ -140,6 +140,30 @@
         dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/plugins/fedora-autologin/fedora-autologin.php"
   when: wp_openid_redirect  
 
+- name: Update theme files
+  template:
+    src: "{{ item }}"
+    dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/themes/centos/{{ item | basename }}"
+  with_fileglob:
+    - "templates/theme/*.php"
+    - "templates/theme/*.css"
+  tags: theme
+
+- name: Update theme includes
+  template:
+    src: "{{ item }}"
+    dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/themes/centos/includes/{{ item | basename }}"
+  with_fileglob:
+    - "templates/theme/includes/*.php"
+  tags: theme
+
+- name: Update theme screenshot
+  copy:
+    src: "{{ item }}"
+    dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/themes/centos/{{ item | basename }}"
+  with_fileglob:
+    - "templates/theme/screenshot.png"
+  tags: theme
 
 - name: Ensuring backup user and jobs
   include_role:

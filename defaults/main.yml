@@ -28,3 +28,53 @@ wp_openid_idp_url: https://id.centos.org/idp/openid
 wp_httpd_hostname: "{{ inventory_hostname }}"
 wp_httpd_tls: False # if True, redirect to https in vhost and needs proper TLS x509 cert,key based on wp_httpd_hostname
 
+# ===============================================================================
+# httpd_assets_url - Set assets url (without trailing slash).
+#
+# Here is were css, images and js files will be retrieved from. This is
+# normally "https://www.centos.org" in production and
+# "https://www.dev.centos.org" in development. When we change the main site
+# design all other sites based on it will be changed as well and there won't be
+# necessary to maintain separated files. In order for this to work, origin
+# domains must be specified in httpd_www_cors option.
+#
+# This variable should be defined in a high scope location (e.g., under
+# `group_vars/all.yml`, or `group_vars/webistes.yml`) so all website-related
+# playbooks you run can take advantage of it reducing the number of places you
+# need to change.
+# ===============================================================================
+httpd_assets_url: "https://www.centos.org"
+
+
+# ===============================================================================
+# httpd_navbar - Set website navigation bar.
+#
+# The navigation bar is visible on the very top of each CentOS website, where
+# the CentOS logo and the top-level-always-visible links are placed. The navbar
+# can contain both links and menu of links so you can group them. Menus by
+# default are hidden and are visible when the user clicks the item that has the
+# arrow pointing down on right side.
+#
+# The navigation bar the httpd_navbar variable defines is re-used in different
+# website templates (e.g., mailman, wordpress-theme).  For consistency, it must
+# match the content the `_data/centos/navbar.yml` file provides in
+# www.centos.org site.
+#
+# This variable should be defined in a high scope location (e.g., under
+# `group_vars/all.yml`, or `group_vars/webistes.yml`) so all website-related
+# playbooks you run can take advantage of it reducing the number of places you
+# need to change.
+#
+# When you define link inside the navbar, use `httpd_assets_url` variable as
+# much as possible to keep navigability among different environments (e.g.,
+# www.dev.centos.org and www.centos.org).  See `httpd_assets_url` block in this
+# file to know more.
+# ===============================================================================
+httpd_navbar:
+  - name: "Download"
+    icon: "fas fa-download"
+    link: "{{ httpd_assets_url }}/download"
+    menu: []
+  - name: "About"
+    icon: "fas fa-info-circle"
+    link: "#"
