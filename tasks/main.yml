@@ -128,15 +128,6 @@
   tags:
     - plugins
 
-- name: Deploying wordpress themes if needed
-  unarchive:
-    src: "themes/{{ item }}"
-    remote_src: no
-    dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/themes/"
-  with_items: "{{ wp_themes }}"  
-  tags:
-    - themes
-
 - block:
     - name: Ensuring we have fedora-autologin plugin directory
       file:
@@ -148,6 +139,15 @@
         src: fedora-autologin.php.j2
         dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/plugins/fedora-autologin/fedora-autologin.php"
   when: wp_openid_redirect  
+
+- name: Ensuring centos theme directory exists
+  file:
+    path: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/themes/{{ item }}/"
+    state: directory
+  with_items:
+    - centos
+    - centos/includes
+  tags: theme  
 
 - name: Update theme files
   template:
