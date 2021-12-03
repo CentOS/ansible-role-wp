@@ -19,6 +19,10 @@ wp_plugins:
   - name: openid
     version: 3.5.0
 
+# Wordpress themes to import from files/themes directory in this role
+wp_themes:
+  - centos-wp-theme.tar.gz
+
 # openid configuration : do we want to configure which IdP to use automatically ?
 # Has to be manually enabled by admin on first install though
 wp_openid_redirect: False

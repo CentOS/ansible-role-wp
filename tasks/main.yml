@@ -128,6 +128,15 @@
   tags:
     - plugins
 
+- name: Deploying wordpress themes if needed
+  unarchive:
+    src: "themes/{{ item }}"
+    remote_src: no
+    dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/themes/"
+  with_items: "{{ wp_themes }}"  
+  tags:
+    - themes
+
 - block:
     - name: Ensuring we have fedora-autologin plugin directory
       file:
