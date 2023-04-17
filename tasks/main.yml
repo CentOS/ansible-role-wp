@@ -1,4 +1,12 @@
 # Defaults tasks for role wp / Wordpress
+- name: Importing specific distro variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+  tags:
+    - vars
+
 - include_tasks: selinux.yml
 
 - block:
@@ -79,6 +87,15 @@
     tasks_from: scl-php
   tags:
     - php
+  when: ansible_distribution_major_version|int < 8
+
+- name: Adding httpd php task
+  include_role:
+    name: httpd
+    tasks_from: php
+  tags:
+    - php
+  when: ansible_distribution_major_version|int > 7
 
 - name: Ensuring we have local directory for instance
   file:
