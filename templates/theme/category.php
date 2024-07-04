@@ -6,8 +6,8 @@
 
   <div class="row justify-content-center mb-5">
     <div class="text-bg-dark bg-image p-5">
-      <div class="h1"><?php bloginfo( 'name' ); ?></div>
-      <div class="lead"><?php bloginfo( 'description' ); ?></div>
+      <div class="h1">Categories</div>
+      <div class="lead"><?php single_cat_title(); ?></div>
     </div>
   </div>
 

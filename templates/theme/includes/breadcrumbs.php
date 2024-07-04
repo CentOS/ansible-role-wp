@@ -9,7 +9,7 @@
 	<?php if ( is_404() ) : ?>
 	<li class="breadcrumb-item">404</li>
 	<?php elseif ( is_search() ) : ?>
-	<li class="breadcrumb-item">Search results for "<?php echo get_search_query(); ?>"</li>
+	<li class="breadcrumb-item">Search results "<?php echo get_search_query(); ?>"</li>
 	<?php elseif ( is_category() ) : ?>
 	<li class="breadcrumb-item">Categories "<?php single_cat_title(); ?>"</li>
 	<?php elseif ( is_archive() ) : ?>

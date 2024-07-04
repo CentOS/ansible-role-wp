@@ -6,8 +6,8 @@
 
   <div class="row justify-content-center mb-5">
     <div class="text-bg-dark bg-image p-5">
-      <div class="h1"><?php bloginfo( 'name' ); ?></div>
-      <div class="lead"><?php bloginfo( 'description' ); ?></div>
+      <div class="h1">Search results</div>
+      <div class="lead"><?php echo get_search_query(); ?></div>
     </div>
   </div>
 
