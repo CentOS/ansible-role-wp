@@ -164,7 +164,11 @@
   with_items:
     - centos
     - centos/includes
-  tags: theme  
+    - centos/assets/css/base
+    - centos/assets/icons
+    - centos/assets/img
+    - centos/assets/js
+  tags: theme
 
 - name: Update theme files
   template:
@@ -181,6 +185,42 @@
     dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/themes/centos/includes/{{ item | basename }}"
   with_fileglob:
     - "templates/theme/includes/*.php"
+  tags: theme
+
+- name: Update theme css
+  template:
+    src: "{{ item }}"
+    dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/themes/centos/assets/css/base/{{ item | basename }}"
+  with_fileglob:
+    - "templates/theme/assets/base/*.css"
+    - "templates/theme/assets/base/*.css.map"
+  tags: theme
+
+- name: Update theme icons
+  template:
+    src: "{{ item }}"
+    dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/themes/centos/assets/icons/{{ item | basename }}"
+  with_fileglob:
+    - "templates/theme/assets/icons/*.png"
+    - "templates/theme/assets/icons/*.ico"
+    - "templates/theme/assets/icons/*.svg"
+  tags: theme
+
+- name: Update theme img
+  template:
+    src: "{{ item }}"
+    dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/themes/centos/assets/img/{{ item | basename }}"
+  with_fileglob:
+    - "templates/theme/assets/img/*.png"
+    - "templates/theme/assets/img/*.svg"
+  tags: theme
+
+- name: Update theme js
+  template:
+    src: "{{ item }}"
+    dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/themes/centos/assets/js/{{ item | basename }}"
+  with_fileglob:
+    - "templates/theme/assets/js/*.js"
   tags: theme
 
 - name: Update theme screenshot
