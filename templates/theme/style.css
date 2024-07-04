@@ -1,0 +1,143 @@
+/*
+Theme Name:        wordpress-theme-centos
+Theme URI:
+Author URI:        https://gitlab.com/centos/artwork
+Version:           v1.0.1
+Author:            CentOS Artwork SIG
+Description:       Wordpress theme for CentOS webistes.
+Tags:
+Text Domain:       wordpress-theme-centos
+Requires at least:
+Tested up to:      6.5
+Requires PHP:      7.3
+License:           MIT License
+License URI:       https://gitlab.com/CentOS/artwork/centos-web/wordpress-theme-centos/-/blob/main/LICENSE
+*/
+
+#comments .comment-body {
+  background: var(--bs-light);
+  padding: var(--bs-gutter-x);
+  border-left: 3px var(--bs-border-style) var(--bs-border-color);
+  margin-top: var(--bs-gutter-x);
+  margin-bottom: var(--bs-gutter-x);
+}
+#comments .children {
+  list-style: none;
+}
+#comments .comment-meta {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px var(--bs-border-style) var(--bs-border-color);
+}
+
+#respond {
+  padding: var(--bs-gutter-x);
+  background: var(--bs-light);
+}
+
+main {
+  a {
+    --bs-link-underline-opacity: 0.25;
+    text-decoration-color: rgba(var(--bs-primary-rgb), var(--bs-link-underline-opacity));
+    text-underline-offset: 0.375em;
+  }
+  a:hover {
+    --bs-link-underline-opacity: 0.75;
+  }
+  input[type=text], textarea {
+    display: block;
+    width: 100%;
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
+    line-height: var(--bs-body-line-height);
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  textarea {
+    display: block;
+    width: 100%;
+  }
+  select {
+    --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    display: block;
+    width: 100%;
+    font-size: var(--bs-btn-font-size);
+    font-weight: var(--bs-btn-font-weight);
+    line-height: var(--bs-btn-line-height);
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    color: var(--bs-body-color);
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    cursor: pointer;
+    height: calc(2.5rem + calc(var(--bs-border-width) * 2));
+    min-height: calc(2.5rem + calc(var(--bs-border-width) * 2));
+    line-height: 1.25;
+  }
+  #searchsubmit {
+    margin-top: var(--bs-btn-padding-y);
+  }
+  input[type=submit] {
+    --bs-btn-padding-x: 0.75rem;
+    --bs-btn-padding-y: 0.375rem;
+    --bs-btn-font-family: ;
+    --bs-btn-font-size: 1rem;
+    --bs-btn-font-weight: 400;
+    --bs-btn-line-height: 1.5;
+    --bs-btn-border-width: var(--bs-border-width);
+    --bs-btn-border-radius: var(--bs-border-radius);
+    --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+    --bs-btn-disabled-opacity: 0.65;
+    --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5);
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #a14f8c;
+    --bs-btn-border-color: #a14f8c;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #894377;
+    --bs-btn-hover-border-color: #813f70;
+    --bs-btn-focus-shadow-rgb: 175, 105, 157;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #813f70;
+    --bs-btn-active-border-color: #793b69;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #a14f8c;
+    --bs-btn-disabled-border-color: #a14f8c;
+    display: inline-block;
+    padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+    font-family: var(--bs-btn-font-family);
+    font-size: var(--bs-btn-font-size);
+    font-weight: var(--bs-btn-font-weight);
+    line-height: var(--bs-btn-line-height);
+    color: var(--bs-btn-color);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+    border-radius: var(--bs-btn-border-radius);
+    background-color: var(--bs-btn-bg);
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  input[type=submit]:hover {
+    color: var(--bs-btn-hover-color);
+    background-color: var(--bs-btn-hover-bg);
+    border-color: var(--bs-btn-hover-border-color);
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: var(--bs-focus-ring-width) var(--bs-border-style) var(--bs-focus-ring-color);
+    border-radius: var(--bs-border-radius);
+    border: var(--bs-border-width) var(--bs-primary-border-subtle) var(--bs-border-style);
+  }
+}

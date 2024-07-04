@@ -14,43 +14,39 @@ if ( post_password_required() )
     return;
 ?>
 
-<div id="comments" class="comments-area">
+<div id="comments" class="border-primary border-top border-5 mt-5">
 
-    <?php if ( have_comments() ) : ?>
-        <h2 class="comments-title">
-            <?php
-                printf( _nx( 'One thought on "%2$s"', '%1$s thoughts on "%2$s"', get_comments_number(), 'comments title', 'twentythirteen' ),
-                    number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
-            ?>
-        </h2>
+<?php if ( have_comments() ) : ?>
+    <div class="mt-3"><?php printf( _nx( 'One thought on "%2$s"', '%1$s thoughts on "%2$s"', get_comments_number(), 'comments title', 'wordpress-theme-centos' ), number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' ); ?></div>
 
-        <ol class="comment-list">
-            <?php
-                wp_list_comments( array(
-                    'style'       => 'ol',
-                    'short_ping'  => true,
-                    'avatar_size' => 74,
-                ) );
-            ?>
-        </ol><!-- .comment-list -->
-
+    <ul class="list-unstyled">
         <?php
-            // Are there comments to navigate through?
-            if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
+            wp_list_comments( array(
+                'style'       => 'ul',
+                'short_ping'  => true,
+                'avatar_size' => 32,
+            ) );
         ?>
-        <nav class="navigation comment-navigation" role="navigation">
-            <h1 class="screen-reader-text section-heading"><?php _e( 'Comment navigation', 'twentythirteen' ); ?></h1>
-            <div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'twentythirteen' ) ); ?></div>
-            <div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'twentythirteen' ) ); ?></div>
-        </nav><!-- .comment-navigation -->
-        <?php endif; // Check for comment navigation ?>
+    </ul><!-- .comment-list -->
 
-        <?php if ( ! comments_open() && get_comments_number() ) : ?>
-        <p class="no-comments"><?php _e( 'Comments are closed.' , 'twentythirteen' ); ?></p>
-        <?php endif; ?>
+    <?php
+        // Are there comments to navigate through?
+        if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
+    ?>
+    <nav class="navigation comment-navigation" role="navigation">
+        <h1 class="screen-reader-text section-heading"><?php _e( 'Comment navigation', 'wordpress-theme-centos' ); ?></h1>
+        <div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'wordpress-theme-centos' ) ); ?></div>
+        <div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'wordpress-theme-centos' ) ); ?></div>
+    </nav><!-- .comment-navigation -->
+    <?php endif; // Check for comment navigation ?>
 
-    <?php endif; // have_comments() ?>
+    <?php if ( ! comments_open() && get_comments_number() ) : ?>
+    <p class="no-comments"><?php _e( 'Comments are closed.' , 'wordpress-theme-centos' ); ?></p>
+    <?php endif; ?>
 
-    <?php comment_form(); ?>
+<?php endif; // have_comments() ?>
+</div>
 
-</div><!-- #comments -->
+<?php comment_form( array(
+  'class_container' => "comment-respond pb-1"
+) ); ?>
