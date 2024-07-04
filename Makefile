@@ -1,5 +1,5 @@
 WP_THEME_NAME    := wordpress-theme-centos
-WP_THEME_VERSION := v1.0.1
+WP_THEME_VERSION := v1.0.2
 WP_THEMES_DIR    := ./templates/theme/
 
 all:
