@@ -78,3 +78,18 @@ httpd_navbar:
   - name: "About"
     icon: "fas fa-info-circle"
     link: "#"
+
+# ===============================================================================
+# Blog theme configuration.
+#
+# Themes are being installed in accumulative way to avoid conflicts between
+# different theme versions (e.g., because files were added or removed). You can
+# switch from one theme version to another using the wordpress graphical user
+# interface, after performing a live preview verification. As new themes are
+# installed, older themes are available as backup mechanism.
+#
+# New theme releases can be found in:
+# - https://gitlab.com/CentOS/artwork/centos-web/wordpress-theme-centos/-/releases
+# ===============================================================================
+wp_theme_name: wordpress-theme-centos
+wp_theme_version: "1.0.16"
