@@ -156,6 +156,8 @@
         src: fedora-autologin.php.j2
         dest: "{{ wp_local_path | default('/var/www/wordpress') }}/wp-content/plugins/fedora-autologin/fedora-autologin.php"
   when: wp_openid_redirect
+  tags:
+    - openid
 
 - name: Ensuring centos theme directory exists
   file:

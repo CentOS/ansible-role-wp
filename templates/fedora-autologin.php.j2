@@ -9,6 +9,7 @@ Author URI: http://patrick.uiterwijk.org/
 License: https://creativecommons.org/publicdomain/zero/1.0/
 
 Written in 2015 by Patrick Uiterwijk <patrick@puiterwijk.org>
+Modified by Michael Scherer (https://discussion.fedoraproject.org/t/login-broken-on-fedora-magazine-due-to-version-upgrade/87973/13)
 
     This file is part of Fedora AutoLogin, a plugin for WordPress.
 
@@ -28,6 +29,8 @@ function auto_login_openid() {
         // Automatically login
         document.getElementById("openid_identifier").value = "{{ wp_openid_idp_url }}";
         document.getElementById("loginform").style.display = "none";
+        document.getElementById("user_login").removeAttribute("required");
+        document.getElementById("user_pass").removeAttribute("required");
         document.getElementById("loginform").insertAdjacentHTML("beforebegin", "<p>You are being redirected, please wait.</p>");
         document.getElementById("wp-submit").click();
     };
